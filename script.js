@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
         heart.classList.add('glow', 'pulsing');
         setTimeout(() => {
             heart.classList.remove('glow');
-        }, 2000); // Glow dura 1 segundo, pulsar continua
+            window.location.href = "index2.html";
+        }, 2000);
     });
 });
+

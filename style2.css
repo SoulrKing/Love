@@ -33,10 +33,11 @@ body {
 /* Parallax background effect */
 .parallax-bg {
     /* The image URL should be replaced with your own */
-    background-image: url('sua-imagem.jpg');
+    background-image: url('/IMG/Beijofoto.jpg');
     min-height: 500px;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    
 }

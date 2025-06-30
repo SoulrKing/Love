@@ -1,0 +1,42 @@
+body {
+            background-color: #108306;
+            font-family: Arial, sans-serif;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #ff1900;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        .heart-container {
+            margin-top: 20px;
+        }
+
+        .heart {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .heart i {
+            font-size: 50px;
+            color: #e74c3c;
+        }
+
+/* Parallax background effect */
+.parallax-bg {
+    /* The image URL should be replaced with your own */
+    background-image: url('sua-imagem.jpg');
+    min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

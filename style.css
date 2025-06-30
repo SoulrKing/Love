@@ -1,0 +1,97 @@
+body {
+    background: #8f0606;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    width: 100vw;
+    box-sizing: border-box;
+    touch-action: manipulation;
+}
+h1 {
+    position: fixed;
+    top: 140px;
+    left: 0;
+    width: 100vw;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    font-size: 60px;
+    text-align: center;
+    margin: 0;
+    z-index: 10;
+}
+.heart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 100vh;
+    position: relative;
+}
+
+.heart {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    background: #ff4d4d;
+    transform: rotate(-45deg);
+    margin: 0 auto;
+    cursor: pointer;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+    box-shadow: 0 0 10px 1px #ff4d4d80;
+    transition: box-shadow 0.3s, transform 0.2s;
+    border: none;
+    outline: none;
+    display: inline-block;
+    padding: 0;
+    appearance: none;
+}
+
+.heart:focus-visible {
+    box-shadow: 0 0 0 3px #fff, 0 0 10px 1px #ff4d4d80;
+}
+
+.heart.pulsing {
+    animation: pulse 1s infinite, fadeIn 1s forwards;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: #ff4d4d;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -30px;
+    left: 0;
+}
+
+.heart::after {
+    left: 30px;
+    top: 0;
+}
+
+.heart.glow {
+    box-shadow: 0 0 50px 5px #00ff00, 0 0 40px 10px #ff4d4d;
+}
+
+.heart:hover,
+.heart:active {
+    box-shadow: 0 0 30px 5px #ff4d4d, 0 0 10px 2px #ff0000;
+    transform: scale(1.08) rotate(-45deg);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1) rotate(-45deg);}
+    50% { transform: scale(1.15) rotate(-45deg);}
+    100% { transform: scale(1) rotate(-45deg);}
+}
+
+@keyframes fadeIn {
+    to { opacity: 2; }
+}

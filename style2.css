@@ -1,43 +1,206 @@
+@layer base, rhythm, layout, components, default, overwrites;
+
+html {
+  /* Create a snapping rule on the html element */
+  scroll-snap-type: y mandatory;
+
+  /* Create a timeline scope, so we can target any element on the page */
+  timeline-scope: --section, --main, --site-header;
+}
+
 body {
-            background-color: #108306;
-            font-family: Arial, sans-serif;
-            color: #ffffff;
-            text-align: center;
-            padding: 20px;
-        }
+    background-color: var(--color-background, rgba(30, 95, 0, 0.74));
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    color: #fff;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+    overflow-x: hidden; /* Adicione esta linha para remover a barra de rolagem lateral */
+}
 
-        h1 {
-            color: #ff1900;
-        }
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
 
-        p {
-            font-size: 1.2em;
-            margin: 10px 0;
-        }
+main {
+  view-timeline: --main;
+}
 
-        .heart-container {
-            margin-top: 20px;
-        }
+.section {
+  /* Creating a snapping rule on the section element */
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
 
-        .heart {
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-        }
+  /* Attach the timeline to the section element*/
+  view-timeline: --section;
 
-        .heart i {
-            font-size: 50px;
-            color: #e74c3c;
-        }
+  /* Set each section to the full dynamic height of the viewport */
+  height: 100dvh; /* Usa a altura dinâmica da viewport para qualquer tela */
+}
 
-/* Parallax background effect */
-.parallax-bg {
-    /* The image URL should be replaced with your own */
-    background-image: url('/IMG/Beijofoto.jpg');
-    min-height: 500px;
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+.content {
+  /* Fix the content, so it doesn't scroll with the section */
+  overflow: hidden;
+  position: fixed;
+  inset: 0;
+
+  /* Animate the content based on the section scrolling */
+  --contrast: 4;
+  --blur: 0.5rem;
+
+  /* Só animação zoom-scroll */
+  animation: zoom-scroll ease-in-out both;
+  animation-timeline: --section;
+}
+
+@keyframes zoom-scroll {
+  0% {
+    filter: blur(5rem);
+    transform: scale(0);
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  50% {
+    filter: blur(0);
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    filter: blur(3rem);
+    transform: scale(1.5);
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.section img,
+.content img {
+    width: 100%;
+    height: auto;
+    max-width: 100vw;
+    max-height: 100dvh;
+    display: block;
+    object-fit: contain;
+    margin: 0 auto;
+}
+
+.section,
+.content {
+    width: 100vw;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 2vw;
+    text-align: center;
+    word-break: break-word;
+}
+
+.section p,
+.content p,
+.section h1,
+.content h1,
+.section h2,
+.content h2,
+.section h3,
+.content h3 {
+    max-width: 90vw;
+    font-size: clamp(1rem, 4vw, 2.5rem);
+    line-height: 1.3;
+    margin: 1rem 0;
+    word-break: break-word;
+}
+
+.section h2,
+.content h2 {
+    margin-top: 50px;
+    padding: 0 20px;
+}
+
+.text {
+    position: relative;
+    width: 100%;
+    max-width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text img {
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+    z-index: 1;
+    border-radius: 25px;
+
+}
+
+/* Fade nas bordas da imagem usando um pseudo-elemento */
+.text::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    border-radius: 0.5em;
+    ;
+}
+
+.text p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    font-size: clamp(1rem, 4vw, 2rem);
+    text-align: center;
+    width: 80%;
+    box-sizing: border-box;
+    z-index: 3;
+}
+
+.contorno {
+  filter: 
+    drop-shadow(2px 0 5px rgba(2, 116, 49, 0.589))
+    drop-shadow(-2px 0 5px rgba(0, 88, 5, 0.699))
+    drop-shadow(0 2px 5px rgba(255, 255, 255, 0.37))
     
 }
+
+.cronometro {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    padding: 1rem 2rem;
+    font-size: clamp(1rem, 4vw, 2rem);
+    text-align: center;
+    width: 80%;
+    z-index: 3;
+    border-radius: 25px;
+}
+
+/* Garante que <p> não fiquem um dentro do outro */
+.text p, .cronometro {
+    display: block;
+}
+/* Border radius para todas as imagens */
+img {
+    border-radius: 25px;
+}
+/* Efeito de contraste e desfoque */

@@ -24,7 +24,6 @@ body {
     color: #fff;
     opacity: 0;
     animation: fadeIn 3s forwards;
-    overflow-x: hidden; /* Adicione esta linha para remover a barra de rolagem lateral */
 }
 
 @keyframes fadeIn {

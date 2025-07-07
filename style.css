@@ -98,7 +98,7 @@ h1 {
 
 .parallax-bg {
     /* The image URL should be replaced with your own */
-    background-image: url('/IMG/Beijofoto.jpg');
+    background-image: url('Beijofoto.jpg');
     min-height: 500px;
     background-attachment: fixed;
     background-position: center;
